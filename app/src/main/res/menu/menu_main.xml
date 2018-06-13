@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tec.fernandoalberto.manejoequipos.MainActivity">
+    <item
+        android:id="@+id/action_equipos_varoniles"
+        android:orderInCategory="100"
+        android:title="Ver equipos varoniles"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_equipos_femeniles"
+        android:orderInCategory="100"
+        android:title="Ver equipos femeniles"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_equipos_mixtos"
+        android:orderInCategory="100"
+        android:title="Ver todos los equipos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_lugares_varonil"
+        android:orderInCategory="100"
+        android:title="Lugares Varonil"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_lugares_femenil"
+        android:orderInCategory="100"
+        android:title="Lugares Femenil"
+        app:showAsAction="never" />
+</menu>
