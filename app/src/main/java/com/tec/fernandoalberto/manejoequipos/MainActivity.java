@@ -29,7 +29,6 @@ import java.util.Comparator;
 public class MainActivity extends AppCompatActivity {
 
     ListView Lista;
-    Button Borrar;
     TextView Titulo;
 
     public static String Equipo_Editar;
@@ -42,14 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Lista= findViewById(R.id.Lista);
-        Borrar= findViewById(R.id.btnLimpiar);
         Titulo= findViewById(R.id.txtEquipo);
         Cargar();
-        if(Lista.getCount()==0){
-            Borrar.setEnabled(false);
-        }else{
-            Borrar.setEnabled(true);
-        }
 
         Lista.setClickable(true);
         Lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,27 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Borrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                    builder.setMessage("¿Quiere eliminar todos los equipos?")
-                            .setCancelable(false)
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Limpiar();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-            }
-        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -132,12 +104,34 @@ public class MainActivity extends AppCompatActivity {
             LugaresFemeniles();
             return true;
         }
+        if (id == R.id.action_Eliminar){
+            if(Lista.getCount()!=0){
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage("¿Quiere eliminar todos los equipos?")
+                        .setCancelable(false)
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Limpiar();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }else{
+                Toast.makeText(this, "No hay equipos que eliminar", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     public void Cargar(){
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             Cursor c= db.rawQuery("select * from Equipos", null);
@@ -158,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void VerVaroniles(){
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             Cursor c= db.rawQuery("select * from Equipos where Rama = 'Varonil'", null);
@@ -180,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void LugaresVaroniles(){
         ArrayList<Equipos> vatos= new ArrayList<>();
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             Cursor c= db.rawQuery("select * from Equipos where Rama = 'Varonil'", null);
@@ -189,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             String[] arreglo= new String[cantidad];
             if(c.moveToFirst()){
                 do{
-                    vatos.add(new Equipos( c.getString(0), c.getString(1), c.getInt(2),c.getInt(3),c.getInt(4),c.getInt(5)));
+                    vatos.add(new Equipos( c.getString(0), c.getString(1), c.getInt(2),c.getInt(3),c.getInt(4),c.getInt(5), c.getInt(6), c.getInt(7)));
                     String linea= c.getString(0);
                     arreglo[i]= linea;
                     i++;
@@ -223,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void LugaresFemeniles(){
         ArrayList<Equipos> vatos= new ArrayList<>();
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             Cursor c= db.rawQuery("select * from Equipos where Rama = 'Femenil'", null);
@@ -232,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             String[] arreglo= new String[cantidad];
             if(c.moveToFirst()){
                 do{
-                    vatos.add(new Equipos( c.getString(0), c.getString(1), c.getInt(2),c.getInt(3),c.getInt(4),c.getInt(5)));
+                    vatos.add(new Equipos( c.getString(0), c.getString(1), c.getInt(2),c.getInt(3),c.getInt(4),c.getInt(5), c.getInt(6), c.getInt(7)));
                     String linea= c.getString(0);
                     arreglo[i]= linea;
                     i++;
@@ -266,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void VerFemeniles(){
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             Cursor c= db.rawQuery("select * from Equipos where Rama = 'Femenil'", null);
@@ -289,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void Limpiar(){
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         db.execSQL("delete from Equipos");
         Toast.makeText(this, "Tabla limpiada", Toast.LENGTH_SHORT).show();

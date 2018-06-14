@@ -44,7 +44,7 @@ public class Agregar_Equipos extends AppCompatActivity {
             Toast.makeText(this, "Campos incmpletos", Toast.LENGTH_SHORT).show();
         }else{
             boolean repetido = false;
-            BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+            BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
             SQLiteDatabase db = baseHelper.getWritableDatabase();
             if (db != null) {
                 Cursor c = db.rawQuery("select * from Equipos", null);
@@ -71,7 +71,7 @@ public class Agregar_Equipos extends AppCompatActivity {
         String Nombre = txtNombre.getText().toString();
         String rama = Rama.getSelectedItem().toString();
 
-        BaseHelper baseHelper = new BaseHelper(this, "Torneo", null, 1);
+        BaseHelper baseHelper = new BaseHelper(this, "Torneos", null, 1);
         SQLiteDatabase db = baseHelper.getWritableDatabase();
         if (db != null) {
             ContentValues registronuevo = new ContentValues();
@@ -81,6 +81,8 @@ public class Agregar_Equipos extends AppCompatActivity {
             registronuevo.put("Partidos_Perdidos", 0);
             registronuevo.put("Puntos_Favor", 0);
             registronuevo.put("Puntos_Contra", 0);
+            registronuevo.put("Sets_Ganados", 0);
+            registronuevo.put("Sets_Perdidos", 0);
             long i = db.insert("Equipos", null, registronuevo);
             if (i > 0) {
                 Toast.makeText(this, "Registro Insertado", Toast.LENGTH_SHORT).show();

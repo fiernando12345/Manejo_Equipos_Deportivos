@@ -24,7 +24,7 @@
             android:label="Agregar Equipo"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Editar_Equipo"
-            android:label="Editar Equipo"
+            android:label="Datos de Equipo"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

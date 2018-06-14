@@ -7,14 +7,18 @@ public class Equipos {
     private int PartidosPerdidos;
     private int PuntosFavor;
     private int PuntosContra;
+    private int SetsGanados;
+    private int SetsPerdidos;
 
-    public Equipos(String nombre, String rama, int partidosGanados, int partidosPerdidos, int puntosFavor, int puntosContra) {
+    public Equipos(String nombre, String rama, int partidosGanados, int partidosPerdidos, int puntosFavor, int puntosContra, int setsGanados, int setsPerdidos) {
         Nombre = nombre;
         Rama = rama;
         PartidosGanados = partidosGanados;
         PartidosPerdidos = partidosPerdidos;
         PuntosFavor = puntosFavor;
         PuntosContra = puntosContra;
+        SetsGanados = setsGanados;
+        SetsPerdidos = setsPerdidos;
     }
 
     public String getNombre() {
@@ -63,5 +67,21 @@ public class Equipos {
 
     public void setPuntosContra(int puntosContra) {
         PuntosContra = puntosContra;
+    }
+
+    public int getSetsGanados() {
+        return SetsGanados;
+    }
+
+    public void setSetsGanados(int setsGanados) {
+        SetsGanados = setsGanados;
+    }
+
+    public int getSetsPerdidos() {
+        return SetsPerdidos;
+    }
+
+    public void setSetsPerdidos(int setsPerdidos) {
+        SetsPerdidos = setsPerdidos;
     }
 }

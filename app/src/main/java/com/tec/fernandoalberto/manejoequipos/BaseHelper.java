@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class BaseHelper extends SQLiteOpenHelper{
 
-    String tabla= "CREATE TABLE Equipos(Nombre Text, Rama Text, Partidos_Ganados INTEGER, Partidos_Perdidos INTEGER, Puntos_Favor INTEGER, Puntos_Contra INTEGER)";
+    String tabla= "CREATE TABLE Equipos(Nombre Text, Rama Text, Partidos_Ganados INTEGER, Partidos_Perdidos INTEGER, Puntos_Favor INTEGER, Puntos_Contra INTEGER, Sets_Ganados INTEGER, Sets_Perdidos INTEGER)";
 
     public BaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

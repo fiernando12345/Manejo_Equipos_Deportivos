@@ -30,4 +30,9 @@
         android:orderInCategory="100"
         android:title="Lugares Femenil"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_Eliminar"
+        android:orderInCategory="100"
+        android:title="Eliminar Equipos"
+        app:showAsAction="never" />
 </menu>
